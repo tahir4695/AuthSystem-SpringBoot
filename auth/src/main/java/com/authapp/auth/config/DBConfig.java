@@ -12,18 +12,20 @@ public class DBConfig {
 
 	@Value("${spring.datasource.url}")
     private String url;
+
+    @Value("${spring.datasource.username}")
+    private String username;
+
+    @Value("${spring.datasource.password}")
+    private String password;
+
     @Bean
     public DataSource dataSource() {
-    	//ds.setPortNumber(1433);          // fixed TCP port for SQLEXPRESS
-    	SQLServerDataSource ds = new SQLServerDataSource();
-
-    	ds.setURL("jdbc:sqlserver://localhost:1433;"
-    	          + "databaseName=AuthDB;"
-    	          + "encrypt=true;"
-    	          + "trustServerCertificate=true");
-    	ds.setUser("AuthUser");
-    	ds.setPassword("Tahir@003");
-
+        SQLServerDataSource ds = new SQLServerDataSource();
+        ds.setURL(url);
+        ds.setUser(username);
+        ds.setPassword(password);
         return ds;
     }
 }
+
